@@ -4,11 +4,13 @@ import axios from "axios";
 //import { cartReducer } from "../reducers/cartreducer";
 export const AuthContext = createContext();
 
-function loginService(Email, Password) {
-  return axios.post("https://Homedecor.saswatidas.repl.co/user/login", {
+async function loginService(Email, Password) {
+  const response =await axios.post("https://Homedecor.saswatidas.repl.co/user/login", {
     email: Email,
     password: Password
   });
+  console.log(response.data);
+  return response.data;
 }
 
 export const AuthProvider = ({ children }) => {

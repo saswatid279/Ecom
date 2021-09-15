@@ -23,7 +23,7 @@ export default function Address() {
         setUser("error");
       }
     })();
-  }, [token]);
+  }, [token,navigate]);
   return (
     <>
       {user === null && <p> loading.. </p>}

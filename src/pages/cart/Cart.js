@@ -1,18 +1,19 @@
 import { useEffect, useState } from "react";
 import { useCart } from "../../context/cart-context";
 import axios from "axios";
-import { ReactComponent as Emptybag } from "../../images/shopping-basket.svg";
+import {ReactComponent as Emptybag } from "../../images/emptybag.svg"
 import "./cart.css";
-import { useWishlist } from "../../context/wishlist-context";
+//import { useWishlist } from "../../context/wishlist-context";
 export default function Cart() {
   const { itemsInCart, dispatch } = useCart();
-  const { wishlistdispatch } = useWishlist();
+ // const { wishlistdispatch } = useWishlist();
   const [total_price, settotalprice] = useState(0);
 
   useEffect(() => {
     if (itemsInCart.length !== 0)
       settotalprice(itemsInCart.reduce(calcprice, 0));
-  });
+  },[itemsInCart]);
+
   function calcprice(total, item) {
     total = total + parseInt(item.quantity, 10) * parseInt(item.price, 10);
     console.log("total=", total);
@@ -34,7 +35,7 @@ export default function Cart() {
   // };
   const increaseqty = (item) => {
     (async () => {
-      const { success, product: data } = await axios
+      const { success} = await axios
         .post(`https://homedecor.saswatidas.repl.co/cart/${item._id}`, {
           quantity: item.quantity + 1,
         })
@@ -56,7 +57,7 @@ export default function Cart() {
           return response.data;
         });
       if (cartitem.quantity > 1) {
-        const { success, product: data } = await axios
+        const { success } = await axios
           .post(`https://homedecor.saswatidas.repl.co/cart/${item._id}`, {
             quantity: item.quantity - 1,
           })
@@ -72,47 +73,47 @@ export default function Cart() {
     })();
   };
 
-  const movetowishlist = (item) => {
-    (async () => {
-      const { success, product: data } = await axios
-        .delete(`https://homedecor.saswatidas.repl.co/cart/${item._id}`)
-        .then((response) => {
-          console.log("remove", response.data);
-          return response.data;
-        });
-      if (success) {
-        dispatch({ type: "remove", payload: item._id });
-      } else {
-        console.log("error occured while removing item");
-      }
-    })();
+  // const movetowishlist = (item) => {
+  //   (async () => {
+  //     const { success, product: data } = await axios
+  //       .delete(`https://homedecor.saswatidas.repl.co/cart/${item._id}`)
+  //       .then((response) => {
+  //         console.log("remove", response.data);
+  //         return response.data;
+  //       });
+  //     if (success) {
+  //       dispatch({ type: "remove", payload: item._id });
+  //     } else {
+  //       console.log("error occured while removing item");
+  //     }
+  //   })();
 
-    (async () => {
-      console.log("wishlist");
-      const { success, product: data } = await axios
-        .post("https://homedecor.saswatidas.repl.co/wishlist", {
-          _id: item._id,
-          info: item.info,
-          name: item.name,
-          price: item.price,
-          quantity: 1,
-          url: item.url,
-          fastdelivery: item.fastdelivery,
-          instock: item.instock,
-        })
-        .then((response) => {
-          console.log("addtowishlist", response.data);
-          return response.data;
-        });
-      //console.log(data);
-      //console.log(success);
-      if (success) {
-        wishlistdispatch({ type: "addtowishlist", payload: item });
-      } else {
-        console.log("error");
-      }
-    })();
-  };
+  //   (async () => {
+  //     console.log("wishlist");
+  //     const { success, product: data } = await axios
+  //       .post("https://homedecor.saswatidas.repl.co/wishlist", {
+  //         _id: item._id,
+  //         info: item.info,
+  //         name: item.name,
+  //         price: item.price,
+  //         quantity: 1,
+  //         url: item.url,
+  //         fastdelivery: item.fastdelivery,
+  //         instock: item.instock,
+  //       })
+  //       .then((response) => {
+  //         console.log("addtowishlist", response.data);
+  //         return response.data;
+  //       });
+  //     //console.log(data);
+  //     //console.log(success);
+  //     if (success) {
+  //       wishlistdispatch({ type: "addtowishlist", payload: item });
+  //     } else {
+  //       console.log("error");
+  //     }
+  //   })();
+  // };
   function Showitem(item) {
     return (
       <>
@@ -126,7 +127,7 @@ export default function Cart() {
           }}
         >
           <div className="left">
-            <img src={item.url} width="100rem" />
+            <img src={item.url} alt="not available" width="100rem" />
           </div>
           <div className="right">
             <li key={item.id}> {item.name}</li>
@@ -181,3 +182,4 @@ export default function Cart() {
     );
   }
 }
+

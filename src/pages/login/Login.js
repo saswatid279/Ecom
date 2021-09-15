@@ -20,7 +20,7 @@ export default function Login() {
         <input
           className="input"
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="Email/Phone Number"
+          placeholder="Email"
         />
         <input
           className="input"

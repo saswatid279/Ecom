@@ -15,6 +15,7 @@ export const WishlistProvider = ({ children }) => {
         .then((response) => {
           return response.data;
         });
+        if(success)
       wishlistdispatch({ type: "fetch", payload: data });
     })();
   }, []);
