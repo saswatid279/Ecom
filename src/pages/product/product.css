@@ -1,0 +1,78 @@
+.productcard {
+  display: flex;
+  /* border-radius: 5px; */
+  position: relative;
+  margin-top: 1.5rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  width: 12rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.productcard:hover {
+  box-shadow: 0 5px 9px 0 rgb(114, 114, 114);
+  cursor: pointer;
+}
+.productcard-container {
+  display: flex;
+  margin: 1rem 5rem;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  /* justify-content: center;
+  align-items: center; */
+}
+.productdetail-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.productdetail-img {
+  display: flex;
+}
+.productdetail-info {
+  display: flex;
+}
+
+.card-content {
+  padding: 0.5rem;
+}
+
+.card-badge {
+  box-shadow: 0 5px 9px 0 rgb(114, 114, 114);
+  display: flex;
+  position: relative;
+  margin-top: 1rem;
+  margin-right: 0.5rem;
+  padding: 1rem;
+  width: 20rem;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.card-badge::before {
+  position: absolute;
+  content: "New";
+  padding: 5px;
+  background: rgb(70, 129, 238);
+  color: white;
+  height: auto;
+  width: auto;
+}
+.productcard-btn {
+  position: absolute;
+  right: 5px;
+  padding: 2px 5px;
+}
+.card-title {
+  margin: 0.3rem 0rem;
+}
+.cart-btn {
+  border: none;
+  outline: none;
+  background: var(--blue);
+  color: white;
+  padding: 0.5rem 3.2rem;
+  border-radius: 5px;
+  margin: 1rem 0rem;
+}

@@ -1,0 +1,37 @@
+.input {
+  display: block;
+  margin: 1rem auto;
+  border-radius: 3px;
+
+  /* text-align: center; */
+  font-size: 1rem;
+  padding: 0.5rem;
+  border: none;
+  outline: none;
+}
+.btn {
+  margin: auto;
+  background-color: var(--blue);
+  outline: none;
+  border: none;
+  display: block;
+  font-size: 1.2rem;
+  padding: 0.5rem 1rem;
+  /* border-radius: 5px; */
+  color: white;
+  /* font-weight: bold; */
+}
+.login-container {
+  min-height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background: lightgray; */
+}
+.login-container > div {
+  /* display: flex; */
+  border-radius: 3px;
+  padding: 2rem 3rem;
+  background: var(--blue);
+  box-shadow: 0px 5px 9px 0px;
+}
