@@ -18,25 +18,25 @@ export default function Cart() {
     console.log("total=", total);
     return total;
   }
-  const removefromcart = (id) => {
-    (async () => {
-      const { success, product: data } = await axios
-        .delete(`https://homedecor.saswatidas.repl.co/cart/${id}`)
-        .then((response) => {
-          return response.data;
-        });
-      if (success) {
-        dispatch({ type: "remove", payload: id });
-      } else {
-        console.log("error occured while removing item");
-      }
-    })();
-  };
+  // const removefromcart = (id) => {
+  //   (async () => {
+  //     const { success, product: data } = await axios
+  //       .delete(`https://homedecor.saswatidas.repl.co/cart/${id}`)
+  //       .then((response) => {
+  //         return response.data;
+  //       });
+  //     if (success) {
+  //       dispatch({ type: "remove", payload: id });
+  //     } else {
+  //       console.log("error occured while removing item");
+  //     }
+  //   })();
+  // };
   const increaseqty = (item) => {
     (async () => {
       const { success, product: data } = await axios
         .post(`https://homedecor.saswatidas.repl.co/cart/${item._id}`, {
-          quantity: item.quantity + 1
+          quantity: item.quantity + 1,
         })
         .then((response) => {
           return response.data;
@@ -58,7 +58,7 @@ export default function Cart() {
       if (cartitem.quantity > 1) {
         const { success, product: data } = await axios
           .post(`https://homedecor.saswatidas.repl.co/cart/${item._id}`, {
-            quantity: item.quantity - 1
+            quantity: item.quantity - 1,
           })
           .then((response) => {
             return response.data;
@@ -98,7 +98,7 @@ export default function Cart() {
           quantity: 1,
           url: item.url,
           fastdelivery: item.fastdelivery,
-          instock: item.instock
+          instock: item.instock,
         })
         .then((response) => {
           console.log("addtowishlist", response.data);
@@ -122,7 +122,7 @@ export default function Cart() {
             border: `1px solid black`,
             padding: `1rem`,
             margin: `1rem`,
-            width: "auto"
+            width: "auto",
           }}
         >
           <div className="left">

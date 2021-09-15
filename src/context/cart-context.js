@@ -15,6 +15,7 @@ export const CartProvider = ({ children }) => {
         .then((response) => {
           return response.data;
         });
+        if (success)
       dispatch({ type: "fetch", payload: data });
     })();
   }, []);

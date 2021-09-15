@@ -1,5 +1,5 @@
 import { createContext, useState } from "react";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import axios from "axios";
 //import { cartReducer } from "../reducers/cartreducer";
 export const AuthContext = createContext();

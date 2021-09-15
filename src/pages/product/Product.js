@@ -3,7 +3,7 @@ import productReducer from "../../reducers/productreducer";
 import Showproducts from "./showproduct";
 import getSortedData from "../../utils/getSortedData";
 import getFilteredData from "../../utils/getFilteredData";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 import axios from "axios";
 
 export default function ProductListing() {

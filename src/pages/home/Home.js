@@ -83,7 +83,6 @@ export default function Home() {
         </div>
       </div>
       <button class="floating-btn">
-        <a href="#">{/* <Arrow width="0.8rem" height="0.8rem" /> */}</a>
       </button>
       <footer>
         <p>copyright@2021</p>
