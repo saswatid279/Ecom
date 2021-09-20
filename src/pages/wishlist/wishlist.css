@@ -54,3 +54,12 @@ a.link-btn:hover,
 a.link-btn:active {
   box-shadow: 0 5px 9px 0 rgb(114, 114, 114);
 }
+
+.remove-btn{
+  outline: none;
+  border: none;
+  left:0;
+  font-size: 1rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 5px;
+}

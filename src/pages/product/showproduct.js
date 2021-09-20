@@ -14,7 +14,6 @@ export default function Showproducts(item) {
             <h4>{item.name}</h4>
             <p>Rs.{item.price}</p>
           </div>
-          {/* <button class="cart-btn">Add to Cart</button> */}
         </div>
       </Link>
     </>

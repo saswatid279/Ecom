@@ -1,38 +1,48 @@
 import { useEffect, useState } from "react";
 import { useCart } from "../../context/cart-context";
+import { useNavigate } from "react-router";
+import { useAuth } from "../../context/AuthProvider";
 import axios from "axios";
 import {ReactComponent as Emptybag } from "../../images/emptybag.svg"
 import "./cart.css";
-//import { useWishlist } from "../../context/wishlist-context";
+import { useWishlist } from "../../context/wishlist-context";
 export default function Cart() {
   const { itemsInCart, dispatch } = useCart();
- // const { wishlistdispatch } = useWishlist();
+  const { wishlistdispatch } = useWishlist();
   const [total_price, settotalprice] = useState(0);
+  const {userLogin}= useAuth()
+  const navigate =useNavigate();
 
   useEffect(() => {
     if (itemsInCart.length !== 0)
       settotalprice(itemsInCart.reduce(calcprice, 0));
   },[itemsInCart]);
 
+  useEffect(()=>{
+    if(!userLogin){
+      navigate("/login")
+    }
+  },[userLogin,navigate])
+
   function calcprice(total, item) {
     total = total + parseInt(item.quantity, 10) * parseInt(item.price, 10);
     console.log("total=", total);
     return total;
   }
-  // const removefromcart = (id) => {
-  //   (async () => {
-  //     const { success, product: data } = await axios
-  //       .delete(`https://homedecor.saswatidas.repl.co/cart/${id}`)
-  //       .then((response) => {
-  //         return response.data;
-  //       });
-  //     if (success) {
-  //       dispatch({ type: "remove", payload: id });
-  //     } else {
-  //       console.log("error occured while removing item");
-  //     }
-  //   })();
-  // };
+  const removefromcart = (id) => {
+    (async () => {
+      const { success, product: data } = await axios
+        .delete(`https://homedecor.saswatidas.repl.co/cart/${id}`)
+        .then((response) => {
+          return response.data;
+        });
+      if (success) {
+        dispatch({ type: "remove", payload: data._id });
+      } else {
+        console.log("error occured while removing item");
+      }
+    })();
+  };
   const increaseqty = (item) => {
     (async () => {
       const { success} = await axios
@@ -73,87 +83,75 @@ export default function Cart() {
     })();
   };
 
-  // const movetowishlist = (item) => {
-  //   (async () => {
-  //     const { success, product: data } = await axios
-  //       .delete(`https://homedecor.saswatidas.repl.co/cart/${item._id}`)
-  //       .then((response) => {
-  //         console.log("remove", response.data);
-  //         return response.data;
-  //       });
-  //     if (success) {
-  //       dispatch({ type: "remove", payload: item._id });
-  //     } else {
-  //       console.log("error occured while removing item");
-  //     }
-  //   })();
+  const movetowishlist = (item) => {
+    (async () => {
+      const { success, product: data } = await axios
+        .delete(`https://homedecor.saswatidas.repl.co/cart/${item._id}`)
+        .then((response) => {
+          console.log("remove", response.data);
+          return response.data;
+        });
+      if (success) {
+        dispatch({ type: "remove", payload: data._id });
+      } else {
+        console.log("error occured while removing item");
+      }
+    })();
 
-  //   (async () => {
-  //     console.log("wishlist");
-  //     const { success, product: data } = await axios
-  //       .post("https://homedecor.saswatidas.repl.co/wishlist", {
-  //         _id: item._id,
-  //         info: item.info,
-  //         name: item.name,
-  //         price: item.price,
-  //         quantity: 1,
-  //         url: item.url,
-  //         fastdelivery: item.fastdelivery,
-  //         instock: item.instock,
-  //       })
-  //       .then((response) => {
-  //         console.log("addtowishlist", response.data);
-  //         return response.data;
-  //       });
-  //     //console.log(data);
-  //     //console.log(success);
-  //     if (success) {
-  //       wishlistdispatch({ type: "addtowishlist", payload: item });
-  //     } else {
-  //       console.log("error");
-  //     }
-  //   })();
-  // };
+    (async () => {
+      console.log("wishlist");
+      const { success, product: data } = await axios
+        .post("https://homedecor.saswatidas.repl.co/wishlist", {
+          _id: item._id,
+          info: item.info,
+          name: item.name,
+          price: item.price,
+          quantity: 1,
+          url: item.url,
+          fastdelivery: item.fastdelivery,
+          instock: item.instock,
+        })
+        .then((response) => {
+          console.log("addtowishlist", response.data);
+          return response.data;
+        });
+      
+      if (success) {
+        wishlistdispatch({ type: "addtowishlist", payload: data });
+      } else {
+        console.log("error");
+      }
+    })();
+  };
   function Showitem(item) {
     return (
       <>
         <div
           className="cart-container"
-          style={{
-            border: `1px solid black`,
-            padding: `1rem`,
-            margin: `1rem`,
-            width: "auto",
-          }}
         >
           <div className="left">
             <img src={item.url} alt="not available" width="100rem" />
           </div>
           <div className="right">
-            <li key={item.id}> {item.name}</li>
+            <h4> {item.name}</h4>
             <p>Price: Rs.{item.price}</p>
             <p>
               Quantity: {item.quantity}
               <button className="qty-btn" onClick={() => increaseqty(item)}>
-                +
+               <b>+</b>
               </button>
               <button className="qty-btn" onClick={() => decreaseqty(item)}>
-                -
+                <b>-</b>
               </button>
             </p>
             <span>
-              {/* <button className=" " onClick={() => increaseqty(item)}>
-                +
-              </button>
-              <button className=" " onClick={() => decreaseqty(item)}>
-                -
-              </button> */}
-              {/* <button className="btn" onClick={() => removefromcart(item._id)}>
+              
+              <button className="qty-btn" onClick={() => removefromcart(item._id)}>
                 Remove
               </button>
-              <button className="btn" onClick={() => movetowishlist(item)}>
+              <button className="qty-btn" onClick={() => movetowishlist(item)}>
                 Move to wishlist
-              </button> */}
+              </button>
             </span>
           </div>
         </div>
@@ -163,10 +161,10 @@ export default function Cart() {
 
   if (itemsInCart.length !== 0) {
     return (
-      <>
+      <div className="total-container">
         {itemsInCart.map(Showitem)}
         <p>Total Price={total_price}</p>
-      </>
+      </div>
     );
   } else {
     return (

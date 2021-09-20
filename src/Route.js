@@ -59,9 +59,9 @@ export default function Routepath() {
           <Route path="/" element={<Home />} />
           <Route path="/product" element={<ProductListing />} />
           <Route path="/product/:productId" element={<Productdetails />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/wishlist" element={<Wishlist />} />
           <Route path="/login" element={<Login />} />
+          <PrivateRoute path="/cart" login={userLogin} element={<Cart />} />
+          <PrivateRoute path="/wishlist" login={userLogin} element={<Wishlist />} />
           <PrivateRoute
             path="/address"
             login={userLogin}

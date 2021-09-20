@@ -1,26 +1,31 @@
+import { useEffect } from "react";
+import { useNavigate } from "react-router";
+import { useAuth } from "../../context/AuthProvider";
 import { useWishlist } from "../../context/wishlist-context";
 // import { useCart } from "../../context/cart-context";
 import "./wishlist.css";
-// import axios from "axios";
+ import axios from "axios";
 // import { ReactComponent as Wishlistsvg } from "../../images/wishlist.svg";
 
 export default function Wishlist() {
-  const { wishlist } = useWishlist();
-  // const { dispatch } = useCart();
-  // const removefromwishlist = (id) => {
-  //   (async () => {
-  //     const { success, product } = await axios
-  //       .delete(`https://homedecor.saswatidas.repl.co/wishlist/${id}`)
-  //       .then((response) => {
-  //         return response.data;
-  //       });
-  //     if (success) {
-  //       wishlistdispatch({ type: "remove", payload: id });
-  //     } else {
-  //       console.log("error occured while removing item");
-  //     }
-  //   })();
-  // };
+  const { wishlist,wishlistdispatch } = useWishlist();
+  const {userLogin}= useAuth()
+  const navigate =useNavigate();
+  //const { dispatch } = useCart();
+  const removefromwishlist = (id) => {
+    (async () => {
+      const { success, product:data } = await axios
+        .delete(`https://homedecor.saswatidas.repl.co/wishlist/${id}`)
+        .then((response) => {
+          return response.data;
+        });
+      if (success) {
+        wishlistdispatch({ type: "remove", payload: data._id });
+      } else {
+        console.log("error occured while removing item");
+      }
+    })();
+  };
   // const Addtocart = (item) => {
   //   console.log(item._id);
   //   (async () => {
@@ -46,6 +51,11 @@ export default function Wishlist() {
   //     }
   //   })();
   // };
+  useEffect(()=>{
+    if(!userLogin){
+      navigate("/login")
+    }
+  },[userLogin,navigate])
   function Showiteminwishlist(item) {
     if (wishlist !== " ")
       return (
@@ -54,6 +64,9 @@ export default function Wishlist() {
           <div class="card-content">
             <h4>{item.name}</h4>
             <p>Rs.{item.price}</p>
+            <button className="remove-btn" onClick={() => removefromwishlist(item._id)}>
+              Remove
+             </button>
           </div>
         </div>
 
@@ -88,7 +101,6 @@ export default function Wishlist() {
     return (
       <div class="wishlist-container">
         <div className="card-w">
-          {/* <Wishlistsvg width="10rem" height="10rem" /> */}
           <p>Your wishlist is empty</p>
           <div>
             <a href="/product/:productId" className="link-btn">

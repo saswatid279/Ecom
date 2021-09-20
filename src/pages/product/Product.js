@@ -36,8 +36,9 @@ export default function ProductListing() {
     showInventoryAll
   );
   return (
-    <div>
-      <h2>Products</h2>
+    <div className="product-container">
+     <div className="filter">
+       <legend> Sort By</legend>
       <input
         type="radio"
         onChange={() =>
@@ -55,7 +56,8 @@ export default function ProductListing() {
         }
         checked={sortBy && sortBy === "LOW_TO_HIGH"}
       />
-      Price:Low to high
+      Price:Low to High
+      <legend>Filter By</legend>
       <div>
         <input
           type="checkbox"
@@ -71,6 +73,8 @@ export default function ProductListing() {
           checked={showFastDeliveryOnly}
         />
         Show Fast Delivery Only
+      </div>
+      
       </div>
       <div class="productcard-container">
         {filteredData.map((item) => Showproducts(item))}
