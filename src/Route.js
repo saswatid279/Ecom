@@ -1,7 +1,7 @@
 import ProductListing from "./pages/product/Product";
 import Cart from "./pages/cart/Cart.js";
 import Wishlist from "./pages/wishlist/Wishlist";
-import Address from "./private/Address";
+// import Address from "./private/Address";
 import Nomatch from "./pages/Nomatch";
 import { useWishlist } from "./context/wishlist-context";
 import { useCart } from "./context/cart-context";
@@ -13,6 +13,8 @@ import { Routes, Route, NavLink } from "react-router-dom";
 import { useAuth } from "./context/AuthProvider";
 import Productdetails from "./pages/product/Productdetail";
 import Login from "./pages/login/Login";
+import Signup from "./pages/login/Signup";
+
 
 export default function Routepath() {
   const { wishlist } = useWishlist();
@@ -42,9 +44,9 @@ export default function Routepath() {
             <NavLink className="navbar-right" activeStyle={{}} to="/wishlist">
               Wishlist {wishlist.length}
             </NavLink>
-            <NavLink className="navbar-right" activeStyle={{}} to="/address">
+            {/* <NavLink className="navbar-right" activeStyle={{}} to="/address">
               Address
-            </NavLink>
+            </NavLink> */}
             <NavLink className="navbar-right" activeStyle={{}} to="/login">
               Login
             </NavLink>
@@ -60,13 +62,15 @@ export default function Routepath() {
           <Route path="/product" element={<ProductListing />} />
           <Route path="/product/:productId" element={<Productdetails />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          
           <PrivateRoute path="/cart" login={userLogin} element={<Cart />} />
           <PrivateRoute path="/wishlist" login={userLogin} element={<Wishlist />} />
-          <PrivateRoute
+          {/* <PrivateRoute
             path="/address"
             login={userLogin}
             element={<Address />}
-          />
+          /> */}
           <Route path="*" element={<Nomatch />} />
         </Routes>
       </div>

@@ -14,6 +14,25 @@ export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(savedToken);
   const [userLogin, setLogin] = useState(isUserLoggedIn);
  
+  async function createUser(Username,Email,Password){
+    try {
+      console.log("createuser")
+      const response = await axios.post(
+        "https://Homedecors.saswatidas.repl.co/user",
+        {
+          username:Username,
+          email: Email,
+          password: Password,
+        }
+      );
+      
+      if (response.status === 200) {
+        loginUser(response.data);
+      }
+    } catch (error) {
+      console.log("Unable to Sign up", error);
+    }
+  }
 
   
 
@@ -21,7 +40,7 @@ export const AuthProvider = ({ children }) => {
    
     try {
       const response = await axios.post(
-        "https://Homedecor.saswatidas.repl.co/user/login",
+        "https://Homedecors.saswatidas.repl.co/user/login",
         {
           email: Email,
           password: Password,
@@ -34,17 +53,21 @@ export const AuthProvider = ({ children }) => {
     } catch (error) {
       console.log("Wrong email and password", error);
     }
-
-    function loginUser({ token }) {
-      console.log("token", token);
-      setToken(token);
-      setLogin(true);
-      localStorage?.setItem(
-        "login",
-        JSON.stringify({ isUserLoggedIn: true, token })
-      );
-    }
+   
   }
+
+  //login
+  function loginUser({ token }) {
+    console.log("token", token);
+    setToken(token);
+    setLogin(true);
+    localStorage?.setItem(
+      "login",
+      JSON.stringify({ isUserLoggedIn: true, token })
+    );
+  }
+
+
   function logout() {
     localStorage?.removeItem("login");
     setLogin(false);
@@ -54,6 +77,7 @@ export const AuthProvider = ({ children }) => {
   return (
     <AuthContext.Provider
       value={{
+        createUser,
         userLogin,
         loginWithDetails,
         logout,

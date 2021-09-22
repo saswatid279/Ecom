@@ -12,6 +12,19 @@ export default function Wishlist() {
   const {userLogin}= useAuth()
   const navigate =useNavigate();
   //const { dispatch } = useCart();
+
+  useEffect(() => {
+    (async () => {
+      const { success, products: data } = await axios
+        .get("https://homedecor.saswatidas.repl.co/wishlist")
+        .then((response) => {
+          return response.data;
+        });
+        if(success)
+      wishlistdispatch({ type: "fetch", payload: data });
+    })();
+  }, [wishlistdispatch]);
+
   const removefromwishlist = (id) => {
     (async () => {
       const { success, product:data } = await axios
