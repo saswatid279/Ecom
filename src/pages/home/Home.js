@@ -82,8 +82,8 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <button class="floating-btn">
-      </button>
+      {/* <button class="floating-btn">
+      </button> */}
       <footer>
         <p>copyright@2021</p>
       </footer>
