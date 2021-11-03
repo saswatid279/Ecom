@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <div class="home-container">
       <img
-        src="https://res.cloudinary.com/dvrti07sl/image/upload/v1631718611/homedecor_img_thg6ct.jpg"
+        src="IMAGE_URL/v1631718611/homedecor_img_thg6ct.jpg"
         alt="not available"
         width="100%"
       />
@@ -14,7 +14,7 @@ export default function Home() {
       <div class="card-container">
         <div class="card">
           <img
-            src="https://res.cloudinary.com/dvrti07sl/image/upload/v1631718611/lights_bp7nbx.jpg"
+            src="IMAGE_URL/v1631718611/lights_bp7nbx.jpg"
             alt="not available"
             width="100%"
           />
@@ -25,7 +25,7 @@ export default function Home() {
         </div>
         <div class="card">
           <img
-            src="https://res.cloudinary.com/dvrti07sl/image/upload/v1631718611/solarlight_nalxmn.webp"
+            src="IMAGE_URL/v1631718611/solarlight_nalxmn.webp"
             alt="not available"
             width="100%"
           />
@@ -36,7 +36,7 @@ export default function Home() {
         </div>
         <div class="card">
           <img
-            src="https://res.cloudinary.com/dvrti07sl/image/upload/v1631718616/vase_ahl2br.png"
+            src="IMAGE_URL/v1631718616/vase_ahl2br.png"
             alt="not available"
             width="100%"
           />
@@ -50,7 +50,7 @@ export default function Home() {
       <div class="card-container">
         <div class="card">
           <img
-            src="https://res.cloudinary.com/dvrti07sl/image/upload/v1631718611/lights_bp7nbx.jpg"
+            src="IMAGE_URL/v1631718611/lights_bp7nbx.jpg"
             alt="not available"
             width="100%"
           />
@@ -61,7 +61,7 @@ export default function Home() {
         </div>
         <div class="card">
           <img
-            src="https://res.cloudinary.com/dvrti07sl/image/upload/v1631718611/solarlight_nalxmn.webp"
+            src="IMAGE_URL/v1631718611/solarlight_nalxmn.webp"
             alt="not available"
             width="100%"
           />
@@ -72,7 +72,7 @@ export default function Home() {
         </div>
         <div class="card">
           <img
-            src="https://res.cloudinary.com/dvrti07sl/image/upload/v1631718616/vase_ahl2br.png"
+            src="IMAGE_URL/v1631718616/vase_ahl2br.png"
             alt="not available"
             width="100%"
           />

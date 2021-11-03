@@ -11,7 +11,7 @@ export const CartProvider = ({ children }) => {
   useEffect(() => {
     (async () => {
       const { success, products: data } = await axios
-        .get("https://homedecor.saswatidas.repl.co/cart")
+        .get("BASE_URL/cart")
         .then((response) => {
           return response.data;
         });

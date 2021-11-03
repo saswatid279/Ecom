@@ -10,7 +10,7 @@ export default function Productdetails() {
   useEffect(() => {
     (async () => {
       const { product: productdata } = await axios
-        .get(`https://homedecor.saswatidas.repl.co/product/${productId}`)
+        .get(`BASE_URL/product/${productId}`)
         .then((response) => {
           // console.log(response.data);
           return response.data;
@@ -22,7 +22,7 @@ export default function Productdetails() {
   const Addtocart = (item) => {
     (async () => {
       const { success, product: data } = await axios
-        .post("https://Homedecors.saswatidas.repl.co/cart", {
+        .post("BASE_URL/cart", {
           _id: item._id,
           info: item.info,
           name: item.name,
@@ -45,7 +45,7 @@ export default function Productdetails() {
   const Addtowishlist = (item) => {
     (async () => {
       const { success, product: data } = await axios
-        .post("https://Homedecors.saswatidas.repl.co/wishlist", {
+        .post("BASE_URL/wishlist", {
           _id: item._id,
           info: item.info,
           name: item.name,

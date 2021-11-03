@@ -32,7 +32,7 @@ export default function Cart() {
   const removefromcart = (id) => {
     (async () => {
       const { success, product: data } = await axios
-        .delete(`https://homedecor.saswatidas.repl.co/cart/${id}`)
+        .delete(`BASE_URL/cart/${id}`)
         .then((response) => {
           return response.data;
         });
@@ -46,7 +46,7 @@ export default function Cart() {
   const increaseqty = (item) => {
     (async () => {
       const { success} = await axios
-        .post(`https://homedecor.saswatidas.repl.co/cart/${item._id}`, {
+        .post(`BASE_URL/cart/${item._id}`, {
           quantity: item.quantity + 1,
         })
         .then((response) => {
@@ -62,13 +62,13 @@ export default function Cart() {
   const decreaseqty = (item) => {
     (async () => {
       const { product: cartitem } = await axios
-        .get(`https://homedecor.saswatidas.repl.co/cart/${item._id}`)
+        .get(`BASE_URL/cart/${item._id}`)
         .then((response) => {
           return response.data;
         });
       if (cartitem.quantity > 1) {
         const { success } = await axios
-          .post(`https://homedecor.saswatidas.repl.co/cart/${item._id}`, {
+          .post(`BASE_URL/cart/${item._id}`, {
             quantity: item.quantity - 1,
           })
           .then((response) => {
@@ -86,7 +86,7 @@ export default function Cart() {
   const movetowishlist = (item) => {
     (async () => {
       const { success, product: data } = await axios
-        .delete(`https://homedecor.saswatidas.repl.co/cart/${item._id}`)
+        .delete(`BASE_URL/cart/${item._id}`)
         .then((response) => {
           console.log("remove", response.data);
           return response.data;
@@ -101,7 +101,7 @@ export default function Cart() {
     (async () => {
       console.log("wishlist");
       const { success, product: data } = await axios
-        .post("https://homedecor.saswatidas.repl.co/wishlist", {
+        .post("BASE_URL/wishlist", {
           _id: item._id,
           info: item.info,
           name: item.name,

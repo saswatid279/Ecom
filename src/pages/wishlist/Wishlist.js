@@ -16,7 +16,7 @@ export default function Wishlist() {
   useEffect(() => {
     (async () => {
       const { success, products: data } = await axios
-        .get("https://homedecor.saswatidas.repl.co/wishlist")
+        .get("BASE_URL/wishlist")
         .then((response) => {
           return response.data;
         });
@@ -28,7 +28,7 @@ export default function Wishlist() {
   const removefromwishlist = (id) => {
     (async () => {
       const { success, product:data } = await axios
-        .delete(`https://homedecor.saswatidas.repl.co/wishlist/${id}`)
+        .delete(`BASE_URL/wishlist/${id}`)
         .then((response) => {
           return response.data;
         });

@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
     try {
       console.log("createuser")
       const response = await axios.post(
-        "https://Homedecors.saswatidas.repl.co/user",
+        "BASE_URL/user",
         {
           username:Username,
           email: Email,
@@ -40,7 +40,7 @@ export const AuthProvider = ({ children }) => {
    
     try {
       const response = await axios.post(
-        "https://Homedecors.saswatidas.repl.co/user/login",
+        "BASE_URL/user/login",
         {
           email: Email,
           password: Password,

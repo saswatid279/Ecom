@@ -12,7 +12,7 @@ export default function ProductListing() {
   useEffect(() => {
     (async () => {
       const { products: productdata } = await axios
-        .get("https://Homedecors.saswatidas.repl.co/product")
+        .get("BASE_URL/product")
         .then((response) => {
           return response.data;
         });
