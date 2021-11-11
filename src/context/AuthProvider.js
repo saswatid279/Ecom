@@ -1,9 +1,11 @@
 import { createContext, useState } from "react";
 import { useContext } from "react";
 import axios from "axios";
+
 export const AuthContext = createContext();
-
-
+const dotenv = require('dotenv');
+dotenv.config();
+const BASE_URL_ = process.env['BASE_URL'];
 export const AuthProvider = ({ children }) => {
 
 
@@ -18,7 +20,7 @@ export const AuthProvider = ({ children }) => {
     try {
       console.log("createuser")
       const response = await axios.post(
-        "BASE_URL/user",
+        `${BASE_URL_}/user`,
         {
           username:Username,
           email: Email,
@@ -40,7 +42,7 @@ export const AuthProvider = ({ children }) => {
    
     try {
       const response = await axios.post(
-        "BASE_URL/user/login",
+        "BASE_URL_/user/login",
         {
           email: Email,
           password: Password,
