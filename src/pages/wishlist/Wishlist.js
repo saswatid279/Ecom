@@ -2,33 +2,20 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import { useAuth } from "../../context/AuthProvider";
 import { useWishlist } from "../../context/wishlist-context";
-// import { useCart } from "../../context/cart-context";
 import "./wishlist.css";
  import axios from "axios";
-// import { ReactComponent as Wishlistsvg } from "../../images/wishlist.svg";
 
 export default function Wishlist() {
   const { wishlist,wishlistdispatch } = useWishlist();
   const {userLogin}= useAuth()
   const navigate =useNavigate();
-  //const { dispatch } = useCart();
 
-  useEffect(() => {
-    (async () => {
-      const { success, products: data } = await axios
-        .get("BASE_URL/wishlist")
-        .then((response) => {
-          return response.data;
-        });
-        if(success)
-      wishlistdispatch({ type: "fetch", payload: data });
-    })();
-  }, [wishlistdispatch]);
+  
 
   const removefromwishlist = (id) => {
     (async () => {
       const { success, product:data } = await axios
-        .delete(`BASE_URL/wishlist/${id}`)
+        .delete(`https://homedecors.herokuapp.com/wishlist/${id}`)
         .then((response) => {
           return response.data;
         });

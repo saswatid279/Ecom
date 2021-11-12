@@ -10,7 +10,7 @@ export default function Productdetails() {
   useEffect(() => {
     (async () => {
       const { product: productdata } = await axios
-        .get(`BASE_URL/product/${productId}`)
+        .get(`https://homedecors.herokuapp.com/product/${productId}`)
         .then((response) => {
           // console.log(response.data);
           return response.data;
@@ -22,7 +22,7 @@ export default function Productdetails() {
   const Addtocart = (item) => {
     (async () => {
       const { success, product: data } = await axios
-        .post("BASE_URL/cart", {
+        .post("https://homedecors.herokuapp.com/cart", {
           _id: item._id,
           info: item.info,
           name: item.name,
@@ -45,7 +45,7 @@ export default function Productdetails() {
   const Addtowishlist = (item) => {
     (async () => {
       const { success, product: data } = await axios
-        .post("BASE_URL/wishlist", {
+        .post("https://homedecors.herokuapp.com/wishlist", {
           _id: item._id,
           info: item.info,
           name: item.name,

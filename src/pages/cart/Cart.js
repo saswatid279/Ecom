@@ -6,6 +6,7 @@ import axios from "axios";
 import {ReactComponent as Emptybag } from "../../images/emptybag.svg"
 import "./cart.css";
 import { useWishlist } from "../../context/wishlist-context";
+
 export default function Cart() {
   const { itemsInCart, dispatch } = useCart();
   const { wishlistdispatch } = useWishlist();
@@ -32,7 +33,7 @@ export default function Cart() {
   const removefromcart = (id) => {
     (async () => {
       const { success, product: data } = await axios
-        .delete(`BASE_URL/cart/${id}`)
+        .delete(`https://homedecors.herokuapp.com/cart/${id}`)
         .then((response) => {
           return response.data;
         });
@@ -46,7 +47,7 @@ export default function Cart() {
   const increaseqty = (item) => {
     (async () => {
       const { success} = await axios
-        .post(`BASE_URL/cart/${item._id}`, {
+        .post(`https://homedecors.herokuapp.com/cart/${item._id}`, {
           quantity: item.quantity + 1,
         })
         .then((response) => {
@@ -62,13 +63,13 @@ export default function Cart() {
   const decreaseqty = (item) => {
     (async () => {
       const { product: cartitem } = await axios
-        .get(`BASE_URL/cart/${item._id}`)
+        .get(`https://homedecors.herokuapp.com/cart/${item._id}`)
         .then((response) => {
           return response.data;
         });
       if (cartitem.quantity > 1) {
         const { success } = await axios
-          .post(`BASE_URL/cart/${item._id}`, {
+          .post(`https://homedecors.herokuapp.com/cart/${item._id}`, {
             quantity: item.quantity - 1,
           })
           .then((response) => {
@@ -86,7 +87,7 @@ export default function Cart() {
   const movetowishlist = (item) => {
     (async () => {
       const { success, product: data } = await axios
-        .delete(`BASE_URL/cart/${item._id}`)
+        .delete(`https://homedecors.herokuapp.com/cart/${item._id}`)
         .then((response) => {
           console.log("remove", response.data);
           return response.data;
@@ -101,7 +102,7 @@ export default function Cart() {
     (async () => {
       console.log("wishlist");
       const { success, product: data } = await axios
-        .post("BASE_URL/wishlist", {
+        .post("https://homedecors.herokuapp.com/wishlist", {
           _id: item._id,
           info: item.info,
           name: item.name,
@@ -173,7 +174,7 @@ export default function Cart() {
         <div style={{ marginTop: "2rem", color: "gray" }}>
           <p>Your bag is empty</p>
         </div>
-        <a href="/product/:productId" className="link-btn">
+        <a href="/product" className="link-btn">
           Add some items
         </a>
       </div>

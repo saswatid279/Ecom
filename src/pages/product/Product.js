@@ -3,7 +3,6 @@ import productReducer from "../../reducers/productreducer";
 import Showproducts from "./showproduct";
 import getSortedData from "../../utils/getSortedData";
 import getFilteredData from "../../utils/getFilteredData";
-// import { useParams } from "react-router-dom";
 import axios from "axios";
 
 export default function ProductListing() {
@@ -12,7 +11,7 @@ export default function ProductListing() {
   useEffect(() => {
     (async () => {
       const { products: productdata } = await axios
-        .get("BASE_URL/product")
+        .get("https://homedecors.herokuapp.com/product")
         .then((response) => {
           return response.data;
         });

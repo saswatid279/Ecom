@@ -11,14 +11,14 @@ export const CartProvider = ({ children }) => {
   useEffect(() => {
     (async () => {
       const { success, products: data } = await axios
-        .get("BASE_URL/cart")
+        .get("https://homedecors.herokuapp.com/cart")
         .then((response) => {
           return response.data;
         });
         if (success)
       dispatch({ type: "fetch", payload: data });
     })();
-  }, []);
+  }, [dispatch]);
 
   return (
     <CartContext.Provider

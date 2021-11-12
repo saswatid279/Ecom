@@ -1,18 +1,17 @@
 import "../../styles.css";
 import "./home.css";
-// import { ReactComponent as Arrow } from "../../images/arrow.svg";
 
 export default function Home() {
-  const dotenv = require('dotenv');
-  dotenv.config();
-  console.log(process.env.ABC);
-  const IMG_URL=process.env['IMAGE_URL'];
+  // const dotenv = require('dotenv');
+  // dotenv.config();
+  // console.log(process.env.ABC);
+  // const IMG_URL=process.env['IMAGE_URL'];
 
   return (
     <div class="home-container">
-     <h1>{IMG_URL}</h1>
+    
       <img
-        src={`${IMG_URL}/v1631718611/homedecor_img_thg6ct.jpg`}
+        src={`https://res.cloudinary.com/dvrti07sl/image/upload/v1631718611/homedecor_img_thg6ct.jpg`}
         alt="not available"
         width="100%"
       />
@@ -21,7 +20,7 @@ export default function Home() {
       <div class="card-container">
         <div class="card">
           <img
-            src={`${IMG_URL}/v1631718611/lights_bp7nbx.jpg`}
+            src={`https://res.cloudinary.com/dvrti07sl/image/upload/v1631718611/lights_bp7nbx.jpg`}
             alt="not available"
             width="100%"
           />
@@ -32,7 +31,7 @@ export default function Home() {
         </div>
         <div class="card">
           <img
-            src="IMAGE_URL/v1631718611/solarlight_nalxmn.webp"
+            src="https://res.cloudinary.com/dvrti07sl/image/upload/v1631718611/solarlight_nalxmn.webp"
             alt="not available"
             width="100%"
           />
@@ -43,7 +42,7 @@ export default function Home() {
         </div>
         <div class="card">
           <img
-            src="IMAGE_URL/v1631718616/vase_ahl2br.png"
+            src="https://res.cloudinary.com/dvrti07sl/image/upload/v1631718616/vase_ahl2br.png"
             alt="not available"
             width="100%"
           />
@@ -57,7 +56,7 @@ export default function Home() {
       <div class="card-container">
         <div class="card">
           <img
-            src="IMAGE_URL/v1631718611/lights_bp7nbx.jpg"
+            src="https://res.cloudinary.com/dvrti07sl/image/upload/v1631718611/lights_bp7nbx.jpg"
             alt="not available"
             width="100%"
           />
@@ -68,7 +67,7 @@ export default function Home() {
         </div>
         <div class="card">
           <img
-            src="IMAGE_URL/v1631718611/solarlight_nalxmn.webp"
+            src="https://res.cloudinary.com/dvrti07sl/image/upload/v1631718611/solarlight_nalxmn.webp"
             alt="not available"
             width="100%"
           />
@@ -79,7 +78,7 @@ export default function Home() {
         </div>
         <div class="card">
           <img
-            src="IMAGE_URL/v1631718616/vase_ahl2br.png"
+            src="https://res.cloudinary.com/dvrti07sl/image/upload/v1631718616/vase_ahl2br.png"
             alt="not available"
             width="100%"
           />
